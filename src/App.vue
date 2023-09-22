@@ -1,9 +1,27 @@
 
 
 <template>
-  <div>
-    <router-view class="view"></router-view>
-    <h1>ha</h1>
-  </div>
+  <Navbar></Navbar>
+  <RouterView></RouterView>
 </template>
 
+<script>
+  import Navbar from './components/Navbar.vue';
+  export default {
+      name: "Home", 
+      components: {
+          Navbar
+      },
+      data () {
+          return {
+            
+          }
+      }, 
+      methods: { 
+         
+      },
+      mounted () {
+          
+      }
+  }
+</script>
