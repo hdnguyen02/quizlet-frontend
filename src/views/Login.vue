@@ -3,13 +3,13 @@
 <link rel="stylesheet" href="https://kit-pro.fontawesome.com/releases/v5.15.1/css/pro.min.css" />
 
 <div class="min-h-screen flex flex-col items-center justify-center">
-  <div class="flex flex-col bg-gray-300 shadow-lg px-4 sm:px-6 md:px-8 lg:px-10 py-8 rounded-md w-full max-w-md">
+  <div class="flex flex-col bg-gray-50 shadow-lg px-4 sm:px-6 md:px-8 lg:px-10 py-8 rounded-md w-full max-w-md">
     <div class="font-medium self-center text-xl sm:text-2xl uppercase text-gray-800">Login To Your Account</div>
     <button class="relative mt-6 border rounded-md py-2 text-sm text-gray-800 bg-gray-100 hover:bg-gray-200">
       <span class="absolute left-0 top-0 flex items-center justify-center h-full w-10 text-blue-500"><i class="fab fa-facebook-f"></i></span>
-      <span>Login with Facebook</span>
+      <span>continue with facebook</span>
     </button>
-    <div class="relative mt-10 h-px bg-gray-300">
+    <div class="relative mt-10 h-px">
       <div class="absolute left-0 top-0 flex justify-center w-full -mt-2">
         <span class="px-4 text-xs text-gray-500 uppercase">Or Login With Email</span>
       </div>
@@ -41,6 +41,7 @@
 
             <input v-model="password" id="password" type="password" class="text-sm sm:text-base text-black placeholder-gray-500 pl-10 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400" placeholder="Password" />
           </div>
+          <span v-if="errorLogin" class="text-red-500">{{errorLogin}}</span>
         </div>
 
         <div class="flex items-center mb-6 -mt-4">
@@ -62,14 +63,14 @@
       </form>
     </div>
     <div class="flex justify-center items-center mt-6">
-      <a href="#" target="_blank" class="inline-flex items-center font-bold text-blue-500 hover:text-blue-700 text-xs text-center">
+      <router-link to="/register" class="inline-flex items-center font-bold text-blue-500 hover:text-blue-700 text-xs text-center">
         <span>
           <svg class="h-6 w-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
             <path d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
           </svg>
         </span>
         <span class="ml-2">You don't have an account?</span>
-      </a>
+      </router-link>
     </div>
   </div>
 </div>
@@ -78,31 +79,31 @@
 <script>
     export default {
         data(){
-            return {
+            return {            
                email: "", 
-               password: ""
+               password: "", 
+               errorLogin: null // hiển thị lỗi
             }
         }, 
         methods: {
           loginHandler(){
-            
-            console.log(this.email)
             this.$axios.post('/api/v1/auth/login',{
               email:this.email, password: this.password
             })
-              .then(response => {
-
-                const data = response.data
-                const token = data.token
+              .then(apiResponse => {
+                
+                const response = apiResponse.data
+                if (response.status == 'failure') throw response.message
+                const token = response.data.token 
+                console.log(token)
                 localStorage.setItem("token", token)
-                // chuyển hướng về trang chủ
                 this.$router.push("/") //  về lại trang home. 
               })
-              .catch(error => {
-                // mật khẩu tk không chính xác. 
+              .catch(errorLogin => {
+                this.errorLogin = errorLogin
               })
 
-          }
+          },
         }
     }
 </script>
