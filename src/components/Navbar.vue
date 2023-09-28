@@ -1,7 +1,7 @@
 <template>
     <!-- Main navigation container -->
     <nav
-        class="flex-no-wrap relative flex w-full items-center justify-between bg-[#FBFBFB] py-2 shadow-md shadow-black/5 dark:bg-neutral-600 dark:shadow-black/10 lg:flex-wrap lg:justify-start lg:py-">
+        class="sticky top-0 z-50 flex-no-wrap flex w-full items-center justify-between bg-[#FBFBFB] py-2 shadow-md shadow-black/5 dark:bg-neutral-600 dark:shadow-black/10 lg:flex-wrap lg:justify-start lg:py-">
         <div class="flex w-full flex-wrap items-center justify-between px-3">
             <!-- Hambu  rger button for mobile view -->
             <button
@@ -26,26 +26,33 @@
                     href="#">
                     <img src="https://logos-world.net/wp-content/uploads/2021/03/Quizlet-Logo.png" style="width: 100%"
                         alt="">
-
                 </a>
                 <!-- Left navigation links -->
                 <ul class="list-style-none mr-auto flex flex-col pl-0 lg:flex-row" data-te-navbar-nav-ref>
-                    <li class="mb-4 lg:mb-0 lg:pr-2" data-te-nav-item-ref>
+                    <li class="mb-4 lg:mb-0 lg:pr-2 me-4">
                         <!-- Dashboard link -->
-                        <router-link to="/" class="text-neutral-500 transition duration-200 hover:text-neutral-700 hover:ease-in-out focus:text-neutral-700 disabled:text-black/30 motion-reduce:transition-none dark:text-neutral-200 dark:hover:text-neutral-300 dark:focus:text-neutral-300 lg:px-2 [&.active]:text-black/90 dark:[&.active]:text-zinc-400 data-te-nav-link-ref">
-                           Trang chủ
+                        <router-link to="/" class="font-medium">
+                            Trang chủ
                         </router-link>
                     </li>
                     <!-- Team link -->
-                    <li class="mb-4 lg:mb-0 lg:pr-2" data-te-nav-item-ref>
-                        <a class="text-neutral-500 transition duration-200 hover:text-neutral-700 hover:ease-in-out focus:text-neutral-700 disabled:text-black/30 motion-reduce:transition-none dark:text-neutral-200 dark:hover:text-neutral-300 dark:focus:text-neutral-300 lg:px-2 [&.active]:text-black/90 dark:[&.active]:text-neutral-400"
-                            href="#" data-te-nav-link-ref>Chủ đề</a>
+                    <li class="mb-4 lg:mb-0 lg:pr-2 me-4">
+                        <router-link to="/blog">
+                            Blog
+                        </router-link>
+                    </li>
+                    <li v-if="userStore.getIsAuthenticated" class="mb-4 lg:mb-0 lg:pr-2 me-4">
+                        <router-link to="/class">
+                            Lớp học
+                        </router-link>
+                    </li>
+                    <li v-if="userStore.getIsAuthenticated" class="mb-4 lg:mb-0 lg:pr-2 me-4">
+                        <router-link to="/desk">
+                            Bộ thẻ
+                        </router-link>
                     </li>
                     <!-- Projects link -->
-                    <li class="mb-4 lg:mb-0 lg:pr-2" data-te-nav-item-ref>
-                        <a class="text-neutral-500 transition duration-200 hover:text-neutral-700 hover:ease-in-out focus:text-neutral-700 disabled:text-black/30 motion-reduce:transition-none dark:text-neutral-200 dark:hover:text-neutral-300 dark:focus:text-neutral-300 lg:px-2 [&.active]:text-black/90 dark:[&.active]:text-neutral-400"
-                            href="#" data-te-nav-link-ref>Projects</a>
-                    </li>
+
                 </ul>
             </div>
 
@@ -56,8 +63,9 @@
                 <!-- Second dropdown container -->
 
                 <!-- * theo trạng thái đăng nhập -->
-                
-                <div v-if="!userStore.getIsAuthenticated" class="relative" data-te-dropdown-ref data-te-dropdown-alignment="end">
+
+                <div v-if="!userStore.getIsAuthenticated" class="relative" data-te-dropdown-ref
+                    data-te-dropdown-alignment="end">
                     <!-- Second dropdown trigger -->
                     <router-link to="/login" class="text-gray-500 font-medium">Đăng nhập</router-link>
                     <!-- Second dropdown menu -->
@@ -65,53 +73,90 @@
                 </div>
                 <div v-if="!userStore.getIsAuthenticated">
                     <router-link to="/register"
-                      class="text-black inline-block rounded px-6 py-2.5 font-medium shadow-md transition duration-150 ease-in-out hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg"
-                      style="background-color: #FFCD1F">
-                          Đăng ký
-                      </router-link>
+                        class="text-black inline-block rounded px-6 py-2.5 font-medium shadow-md transition duration-150 ease-in-out hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg"
+                        style="background-color: #FFCD1F">
+                        Đăng ký
+                    </router-link>
                 </div>
-                <div v-if="userStore.getIsAuthenticated" class="relative ml-3">
-                    <div>
-                      <button type="button" class="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
-                        <span class="absolute -inset-1.5"></span>
-                        <span class="sr-only">Open user menu</span>
-                        <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
-                      </button>
+
+                <div>
+
+                    <div v-if="userStore.getIsAuthenticated" class="flex gap-3">
+                        <div class="relative ml-3">
+                            <div @click="toggleAdd" class="rounded-3xl w-8 h-8 bg-[#4255FF] flex items-center justify-center font-bold text-white">
+                                <i class="fa-solid fa-plus"></i>
+                            </div>
+                            <div :class="{ hidden: isCloseAdd }" class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                <router-link @click="isCloseAdd = true" to="/desk/add" class="block px-4 py-2 text-sm text-gray-700" tabindex="-1">Bộ thẻ</router-link>
+                                <router-link @click="isCloseAdd = true" to="/class/create" class="block px-4 py-2 text-sm text-gray-700" tabindex="-1">Lớp</router-link>
+                        
+                            </div>
+
+                        </div>
+                        <div @click="toggleDropdownAvt" class="relative ml-3">
+                            <div class="flex gap-x-2">
+                                <div class="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                                    id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+                                    <img class="h-8 w-8 rounded-full"
+                                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                                        alt="">
+                                </div>
+                                <div class="flex items-center"><i class="fa-solid fa-caret-down"></i></div>
+                            </div>
+
+
+                            <div :class="{ hidden: isCloseDropdownAvt }"
+                                class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                <!-- Active: "bg-gray-100", Not Active: "" -->
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
+                                    id="user-menu-item-0">Your Profile</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
+                                    id="user-menu-item-1">Settings</a>
+                                <router-link @click="logouthandler" to="/" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
+                                    id="user-menu-item-2">Sign out</router-link>
+                            </div>
+                        </div>
                     </div>
-          
-                    <!--
-                      Dropdown menu, show/hide based on menu state.
-          
-                      Entering: "transition ease-out duration-100"
-                        From: "transform opacity-0 scale-95"
-                        To: "transform opacity-100 scale-100"
-                      Leaving: "transition ease-in duration-75"
-                        From: "transform opacity-100 scale-100"
-                        To: "transform opacity-0 scale-95"
-                    -->
-                    <div class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
-                      <!-- Active: "bg-gray-100", Not Active: "" -->
-                      <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
-                      <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>
-                      <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</a>
-                    </div>
-                  </div>
-               
+
+                </div>
             </div>
         </div>
     </nav>
 </template>
 
 <script>
-    import { mapStores } from 'pinia'
-    import {useUserStore} from '../stores/useUserStore.js'
+import { mapStores } from 'pinia'
+import { useUserStore } from '../stores/useUserStore.js'
+import { useTopicStore } from '../stores/useTopicStore.js'
 
-    
-    export default {
-        computed: {
-            ...mapStores (useUserStore),
-        }, 
-       
-        
+export default {
+    computed: {
+        ...mapStores(useUserStore,useTopicStore),
+    },
+    data() {
+        return {
+            isCloseDropdownAvt: true,
+            isCloseAdd: true       
+        }
+    },
+    methods: {
+        toggleDropdownAvt() {
+            this.isCloseDropdownAvt = !this.isCloseDropdownAvt
+        },
+        toggleAdd() {
+            this.isCloseAdd = !this.isCloseAdd 
+        },
+        logouthandler() {
+            localStorage.removeItem("token")
+            // cập nhập lại trạng thái 
+            this.userStore.changeAuthenticate() // thay đổi 
+            this.$axios.get('/api/v1/logout')
+        }
+    }, 
+    created(){
+        this.topicStore.fetchTopics()
     }
+
+
+}
 </script>

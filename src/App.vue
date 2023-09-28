@@ -2,7 +2,10 @@
 
 <template>
   <Navbar></Navbar>
-  <RouterView></RouterView>
+  <div style="margin: 0px 100px">
+    <RouterView></RouterView>
+  </div>
+  
 </template>
 
 <script>
@@ -25,3 +28,11 @@
       }
   }
 </script>
+
+<style>
+  li .router-link-active {
+    color: green;
+    padding-bottom: 8px;
+    border-bottom: 3px solid green;
+  }
+</style>
