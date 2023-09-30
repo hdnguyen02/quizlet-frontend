@@ -15,7 +15,7 @@
         <form @submit.prevent="addDeskHandler" class="mt-5 flex flex-col-reverse md:flex-row md:justify-between gap-x-5">
             <div class="mt-14 flex flex-col gap-y-6 w-full">
                 <div class="flex flex-col">
-                    <input v-model="desk.name" type="text"
+                    <input v-model="desk.name" type="text" required
                         class="outline-none focus:border-b-4 focus:border-yellow-400 border-gray-500 border-b-[3px] pb-3"
                         placeholder="Nhập tên desk..." />
                     <label class="mt-3 uppercase text-[12px] font-bold text-gray-500">Tên desk</label>
@@ -67,7 +67,7 @@
                                         <li v-for="label in topic.labels" :key="label.id" class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
                                             <i class="fa-solid fa-tag"></i>
                                             <span class="flex-1 ml-3 whitespace-nowrap">{{label.name}}</span>
-                                            <input :value="label.id" v-model="desk.labels"  type="checkbox"> 
+                                            <input :value="label.id" v-model="desk.idLabels"  type="checkbox"> 
                                         </li>
                                 
                                     </ul>
@@ -102,7 +102,7 @@ export default {
                 name: null,
                 description: null,
                 isPublic: true, 
-                labels: [] // chứa danh sách nhãn. 
+                idLabels: [] // chứa danh sách nhãn. 
             }
         }
     },
@@ -111,11 +111,21 @@ export default {
     },
     methods: {
         addDeskHandler() {
-            console.log(this.desk)
-            
+            this.$axios.post("api/v1/desk/add",this.desk)
+            .then(apiResponse => {
+                const response = apiResponse.data
+                // check trạng thái 
+                if (response.status == 'failure') throw Error(response.message)
+                // thêm thành công => đưa tới màn hình danh sách thẻ card. 
+                this.$router.push("/desk/all") // đường dẫn chứa toàn bộ danh sách desk. 
 
-            
+
+            })
+            .catch(error => { 
+                alert("Thêm thất bại: " + error)
+            })
         }
+
         ,
         
     }

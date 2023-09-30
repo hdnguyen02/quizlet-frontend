@@ -150,7 +150,7 @@ export default {
             localStorage.removeItem("token")
             // cập nhập lại trạng thái 
             this.userStore.changeAuthenticate() // thay đổi 
-            this.$axios.get('/api/v1/logout')
+            // this.$axios.get('/api/v1/logout')
         }
     }, 
     created(){

@@ -77,6 +77,8 @@
 </template>
 
 <script>
+import { mapStores } from 'pinia'
+import { useUserStore } from '../stores/useUserStore.js'
     export default {
         data(){
             return {            
@@ -85,6 +87,9 @@
                errorLogin: null // hiển thị lỗi
             }
         }, 
+        computed: {
+        ...mapStores(useUserStore),
+        },
         methods: {
           loginHandler(){
             this.$axios.post('/api/v1/auth/login',{
@@ -94,8 +99,8 @@
                 
                 const response = apiResponse.data
                 if (response.status == 'failure') throw response.message
+                this.userStore.changeAuthenticate()
                 const token = response.data.token 
-                console.log(token)
                 localStorage.setItem("token", token)
                 this.$router.push("/") //  về lại trang home. 
               })

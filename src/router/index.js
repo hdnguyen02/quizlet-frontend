@@ -31,6 +31,11 @@ const routes = [
         path: 'add',
         name: 'DeskAdd', 
         component: () => import('../components/DeskAdd.vue')
+      },
+      {
+        path: 'all',
+        name: 'DeskAll', 
+        component: () => import('../components/DeskAll.vue')
       }
     ]
   },
