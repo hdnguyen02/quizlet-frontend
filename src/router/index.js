@@ -36,8 +36,13 @@ const routes = [
         path: 'all',
         name: 'DeskAll', 
         component: () => import('../components/DeskAll.vue')
+      },
+      {
+        path: 'detail/:id',
+        name: 'Detail', 
+        component: () => import('../components/DeskDetail.vue')
       }
-    ]
+  ]
   },
   {
     path: '/login',
