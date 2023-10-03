@@ -1,4 +1,9 @@
 # api client 
+## Tính năng web app 
+- Học, ôn tập flashcard với đa dạng lĩnh vực
+- Ôn tập flash card theo phương pháp **Spaced repetition** còn gọi là kỹ thuật **lặp lại ngắt quãng**
+- Cho phép người dùng đăng ký, đăng nhập
+- Mở lớp học, tạo bài kiểm tra, quản lý lớp học
 ## server cung cấp api 
 https://github.com/hdnguyen02/quizlet-api
 ## cách chạy đồ án 
@@ -20,9 +25,9 @@ https://github.com/hdnguyen02/quizlet-api
 ## Giao diện
 - Trang chủ
   
-  ![image](https://github.com/hdnguyen02/quizlet/assets/83913057/f72c6d94-51d9-40dc-b5ff-295a9023c1d2)
+  ![image](https://github.com/hdnguyen02/quizlet/assets/83913057/e453e646-7e03-44ad-ae68-57f7692a1f66)
 
-  
+
 - Đăng nhập && đăng ký
   
   ![image](https://github.com/hdnguyen02/quizlet/assets/83913057/71cec11c-82fc-4de2-9428-3ad9487212ba)
@@ -38,10 +43,20 @@ https://github.com/hdnguyen02/quizlet-api
 - Toàn bộ thẻ
 
   ![image](https://github.com/hdnguyen02/quizlet/assets/83913057/2d32ada2-701b-4032-b590-c705a435f294)
+  
 
-- Thêm card
+- Hoạt động tự học với bộ thẻ  
 
- ![image](https://github.com/hdnguyen02/quizlet/assets/83913057/ea1461d2-fc91-413d-868b-9c601f20156f)
+ ![image](https://github.com/hdnguyen02/quizlet/assets/83913057/26977029-195b-4314-b819-51623a56da18)
+ 
+
+- Thêm thẻ (flashcard) vào bộ thẻ
+
+ ![image](https://github.com/hdnguyen02/quizlet/assets/83913057/472df519-e940-4ba8-a4d1-1022fdef5f6e)
+
+
+
+
 
 
   
