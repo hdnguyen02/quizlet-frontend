@@ -16,13 +16,13 @@
             <div class="mt-14 flex flex-col gap-y-6 w-full">
                 <div class="flex flex-col">
                     <input v-model="desk.name" type="text" required
-                        class="outline-none focus:border-b-4 focus:border-yellow-400 border-gray-500 border-b-[3px] pb-3"
+                        class="outline-none focus:border-yellow-400 border-gray-500 border-b-[3px] pb-3 bg-[#F6F7FB]"
                         placeholder="Nhập tên desk..." />
                     <label class="mt-3 uppercase text-[12px] font-bold text-gray-500">Tên desk</label>
                 </div>
                 <div class="flex flex-col">
                     <input v-model="desk.description" type="text"
-                        class="outline-none focus:border-b-4 focus:border-yellow-400 border-gray-500 border-b-[3px] pb-3"
+                        class="outline-none focus:border-yellow-400 border-gray-500 border-b-[3px] pb-3 bg-[#F6F7FB]"
                         placeholder="Mô tả desk..." />
                     <label class="mt-3 uppercase text-[12px] font-bold text-gray-500">Mô tả</label>
                 </div>
@@ -83,9 +83,7 @@
 
         </form>
 
-
-
-
+        <Success v-show="isShowAlert" message="thêm thành công"></Success>
     </div>
 </template>
 
@@ -93,41 +91,39 @@
 
 import { mapStores } from 'pinia'
 import { useTopicStore } from '../stores/useTopicStore.js'
+import Success from './alert/Success.vue'
 
 export default {
-  
     data() {
         return {
             desk: {
                 name: null,
                 description: null,
-                isPublic: true, 
+                isPublic: true,
                 idLabels: [] // chứa danh sách nhãn. 
-            }
-        }
+            },
+            isShowAlert: false
+        };
     },
-    computed:{
-            ...mapStores(useTopicStore)
+    computed: {
+        ...mapStores(useTopicStore)
     },
     methods: {
         addDeskHandler() {
-            this.$axios.post("api/v1/desk/add",this.desk)
-            .then(apiResponse => {
-                const response = apiResponse.data
+            this.$axios.post("api/v1/desk/add", this.desk)
+                .then(apiResponse => {
+                const response = apiResponse.data;
                 // check trạng thái 
-                if (response.status == 'failure') throw Error(response.message)
+                if (response.status == 'failure')
+                    throw Error(response.message);
                 // thêm thành công => đưa tới màn hình danh sách thẻ card. 
-                this.$router.push("/desk/all") // đường dẫn chứa toàn bộ danh sách desk. 
-
-
+                this.$router.push("/desk/all"); // đường dẫn chứa toàn bộ danh sách desk. 
             })
-            .catch(error => { 
-                alert("Thêm thất bại: " + error)
-            })
-        }
-
-        ,
-        
-    }
+                .catch(error => {
+                alert("Thêm thất bại: " + error);
+            });
+        },
+    },
+    components: { Success }
 }
 </script>

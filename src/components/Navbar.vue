@@ -28,12 +28,18 @@
                         alt="">
                 </a>
                 <!-- Left navigation links -->
-                <ul class="list-style-none mr-auto flex flex-col pl-0 lg:flex-row" data-te-navbar-nav-ref>
+                <ul class="list-style-none mr-auto flex flex-col pl-0 lg:flex-row font-medium">
                     <li class="mb-4 lg:mb-0 lg:pr-2 me-4">
-                        <!-- Dashboard link -->
-                        <router-link to="/" class="font-medium">
+                        <router-link to="/">
                             Trang chủ
                         </router-link>
+                    </li>
+                    <li class="mb-4 lg:mb-0 lg:pr-2 me-4">
+                        <span to="/topic">
+                            Chủ đề
+                        </span> 
+                        <span><i class="fa-solid fa-caret-down"></i></span>
+                        
                     </li>
                     <!-- Team link -->
                     <li class="mb-4 lg:mb-0 lg:pr-2 me-4">
@@ -51,18 +57,36 @@
                             Bộ thẻ
                         </router-link>
                     </li>
-                    <!-- Projects link -->
-
+                    
+    
                 </ul>
+                
+                
+
+
             </div>
 
             <!-- Right elements -->
             <div class="relative flex items-center gap-x-4">
-                <!-- Container with two dropdown menus -->
+                
+                <button 
+                        class="text-black inline-block rounded px-6 py-2 font-medium shadow-md transition duration-150 ease-in-out hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg"
+                        style="background-color: #FFCD1F">
+                        Nâng cấp tài khoản
+                    </button>
 
-                <!-- Second dropdown container -->
 
-                <!-- * theo trạng thái đăng nhập -->
+                <form>   
+                    <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only">Search</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </div>
+                        <input type="search" id="default-search" class="block w-full px-12 py-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 outline-none" placeholder="Search Mockups, Logos..." required>
+            
+                    </div>
+                </form>
+            
 
                 <div v-if="!userStore.getIsAuthenticated" class="relative" data-te-dropdown-ref
                     data-te-dropdown-alignment="end">
@@ -88,7 +112,7 @@
                             </div>
                             <div :class="{ hidden: isCloseAdd }" class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                                 <router-link @click="isCloseAdd = true" to="/desk/add" class="block px-4 py-2 text-sm text-gray-700" tabindex="-1">Bộ thẻ</router-link>
-                                <router-link @click="isCloseAdd = true" to="/class/create" class="block px-4 py-2 text-sm text-gray-700" tabindex="-1">Lớp</router-link>
+                                <router-link @click="isCloseAdd = true" to="/class" class="block px-4 py-2 text-sm text-gray-700" tabindex="-1">Lớp</router-link>
                         
                             </div>
 

@@ -2,7 +2,7 @@
 
 <template>
   <Navbar></Navbar>
-  <div style="margin: 0px 100px">
+  <div style="margin: 0px 100px 100px 100px">
     <RouterView></RouterView>
   </div>
   
