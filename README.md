@@ -52,7 +52,8 @@ https://github.com/hdnguyen02/quizlet-api
 
 - Thêm thẻ (flashcard) vào bộ thẻ
 
- ![image](https://github.com/hdnguyen02/quizlet/assets/83913057/472df519-e940-4ba8-a4d1-1022fdef5f6e)
+ ![image](https://github.com/hdnguyen02/quizlet/assets/83913057/e1b0e261-546a-4fdd-8e4d-47a71568ed0a)
+
 
 
 
