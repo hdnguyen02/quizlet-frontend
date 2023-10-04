@@ -12,7 +12,7 @@
 
         </div>
 
-        <form @submit.prevent="addDeskHandler" class="mt-5 flex flex-col-reverse md:flex-row md:justify-between gap-x-5">
+        <form @submit.prevent="addDeskHandler" class="mt-5 flex flex-col-reverse md:flex-row justify-between gap-x-5">
             <div class="mt-14 flex flex-col gap-y-6 w-full">
                 <div class="flex flex-col">
                     <input v-model="desk.name" type="text" required
@@ -117,7 +117,7 @@ export default {
                 if (response.status == 'failure')
                     throw Error(response.message);
                 // thêm thành công => đưa tới màn hình danh sách thẻ card. 
-                this.$router.push("/desk/all"); // đường dẫn chứa toàn bộ danh sách desk. 
+                this.$router.push("/desk"); // đường dẫn chứa toàn bộ danh sách desk. 
             })
                 .catch(error => {
                 alert("Thêm thất bại: " + error);

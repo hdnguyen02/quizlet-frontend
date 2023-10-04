@@ -5,6 +5,7 @@ import Blog from "../views/Blog.vue";
 import Desk from "../views/Desk.vue";
 import Class from "../views/Class.vue";
 import NotFound from '../views/NotFound.vue'
+import DeskAdd from '../components/DeskAdd.vue'
 
 const routes = [
   {
@@ -27,6 +28,11 @@ const routes = [
     name: "Desk",
     component: Desk,
     children: [
+      {
+        path: "add",
+        name: "DeskAdd",
+        component: DeskAdd,
+      },
       {
         path: ":id",
         name: "Detail",

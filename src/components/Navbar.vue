@@ -57,13 +57,7 @@
                             Bộ thẻ
                         </router-link>
                     </li>
-                    
-    
                 </ul>
-                
-                
-
-
             </div>
 
             <!-- Right elements -->

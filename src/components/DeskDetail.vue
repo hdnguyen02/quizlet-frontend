@@ -1,10 +1,10 @@
 <template>
-    <div v-if="desk" class="mt-8">
+    <div v-if="desk" class="mt-8 w-full">
         <h3 class="text-3xl font-bold tracking-tight text-gray-900">{{desk.name}}</h3>
     
-            <div class="max-w-3xl">
+            <div class="">
                 <h3 class="font-medium mt-1">Hoạt động tự học</h3>
-                <div class="mt-4 flex gap-y-4 lg:gap-y-0 flex-col lg:flex-row lg:justify-between">
+                <div class="max-w-3xl w-full mt-4 flex gap-y-4 lg:gap-y-0 flex-col lg:flex-row lg:justify-between">
                     <button class="flex gap-x-4 items-center bg-white px-10 py-2 rounded-lg shadow-md">
                         <span><i class="fa-solid fa-chalkboard text-2xl text-[#4255FF]"></i></span>
                         <span class="font-medium">Học</span>
@@ -53,7 +53,6 @@ export default {
             .then(apiResponse => {
                 const response = apiResponse.data 
                 this.desk = response.data
-                console.log(response)
             })
             .catch(() => {
                 this.$router.push('/not-found')
