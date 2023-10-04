@@ -1,7 +1,7 @@
-# api client 
+# api client VueJS
 ## Tính năng web app 
 - Học, ôn tập flashcard với đa dạng lĩnh vực
-- Ôn tập flash card theo phương pháp **Spaced repetition** còn gọi là kỹ thuật **lặp lại ngắt quãng**
+- Ôn tập flash card theo phương pháp **Spaced repetition** hay còn gọi là kỹ thuật **lặp lại ngắt quãng**
 - Cho phép người dùng đăng ký, đăng nhập
 - Mở lớp học, tạo bài kiểm tra, quản lý lớp học
 ## server cung cấp api 
