@@ -1,11 +1,10 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/Home.vue";
-import Login from "../views/Login.vue";
+import Login from "../views/Login.vue"
 import Blog from "../views/Blog.vue";
-import Desk from "../views/Desk.vue";
-import Class from "../views/Class.vue";
-import NotFound from '../views/NotFound.vue'
-import DeskAdd from '../components/DeskAdd.vue'
+import Desk from "../views/Desk.vue"
+import Class from "../views/Class.vue"
+import NotFound from "../views/NotFound.vue"
 
 const routes = [
   {
@@ -29,19 +28,29 @@ const routes = [
     component: Desk,
     children: [
       {
+        path: "all",
+        name: "AllDesk",
+        component: () => import('../components/AllDesk.vue')
+      },
+      {
         path: "add",
-        name: "DeskAdd",
-        component: DeskAdd,
+        name: "AddDesk",
+        component: () => import('../components/AddDesk.vue')
       },
       {
         path: ":id",
-        name: "Detail",
-        component: () => import("../components/DeskDetail.vue"),
+        name: "DetailDesk",
+        component: () => import("../components/DetailDesk.vue"),
         children: [
           {
             path: "add-card",
-            name: "CardAdd",
-            component: () => import("../components/CardAdd.vue"),
+            name: "AddCard",
+            component: () => import("../components/AddCard.vue"),
+          },
+          {
+            path: "study",
+            name: "Study",
+            component: () => import("../components/Study.vue"),
           },
         ],
       },

@@ -5,10 +5,10 @@
             <div class="">
                 <h3 class="font-medium mt-1">Hoạt động tự học</h3>
                 <div class="max-w-3xl w-full mt-4 flex gap-y-4 lg:gap-y-0 flex-col lg:flex-row lg:justify-between">
-                    <button class="flex gap-x-4 items-center bg-white px-10 py-2 rounded-lg shadow-md">
+                    <router-link :to="`/desk/${idDesk}/study`" class="flex gap-x-4 items-center bg-white px-10 py-2 rounded-lg shadow-md">
                         <span><i class="fa-solid fa-chalkboard text-2xl text-[#4255FF]"></i></span>
                         <span class="font-medium">Học</span>
-                    </button>
+                    </router-link>
                     <router-link :to="`/desk/${idDesk}/add-card`"
                         class="flex gap-x-4 items-center bg-white px-10 py-2 rounded-lg shadow-md">
                         <span><i class="fa-solid fa-plus text-2xl text-[#4255FF]"></i></span>
@@ -54,13 +54,13 @@ export default {
                 const response = apiResponse.data 
                 this.desk = response.data
             })
-            .catch(() => {
+            .catch(error => {
+                console.log(error)
                 this.$router.push('/not-found')
             })
         }
     },
     beforeRouteUpdate(to, from, next) {
-    // Xử lý khi route thay đổi
         this.idDesk = to.params.id 
          next();
     }, 

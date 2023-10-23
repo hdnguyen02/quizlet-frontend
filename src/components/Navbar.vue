@@ -53,7 +53,7 @@
                         </router-link>
                     </li>
                     <li v-if="userStore.getIsAuthenticated" class="mb-4 lg:mb-0 lg:pr-2 me-4">
-                        <router-link to="/desk">
+                        <router-link to="/desk/all">
                             Bộ thẻ
                         </router-link>
                     </li>
@@ -166,11 +166,9 @@ export default {
         },
         logouthandler() {
             localStorage.removeItem("token")
-            // cập nhập lại trạng thái 
-            this.userStore.changeAuthenticate() // thay đổi 
-            // this.$axios.get('/api/v1/logout')
+            this.userStore.changeAuthenticate()
         }
-    }, 
+}, 
     created(){
         this.topicStore.fetchTopics()
     }

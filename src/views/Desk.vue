@@ -1,14 +1,11 @@
 <template>
-    <router-view></router-view>
-    <DeskAll/>
-
+    <RouterView></RouterView>
 </template>
 
 <script>
-import DeskAll from '../components/DeskAll.vue'
 export default {
     components: {
-        DeskAll
+       
     }
     
 }
