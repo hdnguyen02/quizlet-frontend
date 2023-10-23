@@ -1,28 +1,27 @@
-# api client VueJS
-## Tính năng web app 
-- Học, ôn tập flashcard với đa dạng lĩnh vực
-- Ôn tập flash card theo phương pháp **Spaced repetition** hay còn gọi là kỹ thuật **lặp lại ngắt quãng**
-- Cho phép người dùng đăng ký, đăng nhập
-- Mở lớp học, tạo bài kiểm tra, quản lý lớp học
-## server cung cấp api 
-https://github.com/hdnguyen02/quizlet-api
-## cách chạy đồ án 
-- download source code
-- chạy lệnh **mpm run dev**
-- chạy cả server rest api tại đường dẫn phía trên để nhận được dữ liệu thô từ phía máy chủ
-## công nghệ sử dụng 
-- vue
-- vite
-- vue router
-- pinia
-- axios
-- taiwind css
-## chức năng 
-#### role
-- STUDENT: Đăng nhập, Đăng ký, tạo bộ thẻ, tham dự lớp học, làm bài kiểm tra dựa trên bộ thẻ đã tạo, tìm kiếm bộ thẻ thích hợp clone về cho riêng mình
-- TEACHER: Tạo lớp, tạo bài kiểm tra cho lớp
-- ADMIN: Tạo Topic, Label giúp người dùng tìm kiếm bộ thẻ dễ dàng
-## Giao diện
+# Đồ án quizlet frontend (Vuejs)
+
+# Table of Contents
+- [HƯỚNG DẪN CHẠY ĐỒ ÁN](#1)
+- [TÍNH NĂNG WEBAPP](#2)
+- [CÔNG NGHỆ SỬ DỤNG](#3)
+- [GIAO DIỆN](#4)
+
+## HƯỚNG DẪN CHẠY ĐỒ ÁN <a name="1"></a>
+- Webapp nhận json từ REST API **quizlet backend**: **https://github.com/hdnguyen02/quizlet-backend**
+- Clone đồ án
+- Điều hướng cmd hoặc terminal đến folder đã clone đồ án sau đó chạy lệnh để cài đặt dependencies: **npm install**
+- Điều hướng cmd hoặc terminal đến folder đã clone đồ án sau đó chạy lệnh để run đồ án: **npm run dev**
+- 
+## TÍNH NĂNG WEBAPP <a name="2"></a>
+- Đăng nhập/đăng ký
+- Học, ôn tập flashcard theo phương pháp **Spaced repetition** hay còn gọi là kỹ thuật **lặp lại ngắt quãng**
+- Tổ chức lớp học, kiểm tra kiến thức
+- CRUD flashcard, desk (bộ thẻ chứa flashcard), class 
+- 
+## CÔNG NGHỆ SỬ DỤNG <a name="3"></a>
+- **Vue js, Vue router, Pinia**
+- Vite, Axios, Html, Css, Javascript, Taiwind Css
+## GIAO DIỆN <a name="4"></a>
 - Trang chủ
   
   ![image](https://github.com/hdnguyen02/quizlet/assets/83913057/e453e646-7e03-44ad-ae68-57f7692a1f66)
@@ -30,7 +29,7 @@ https://github.com/hdnguyen02/quizlet-api
 
 - Đăng nhập && đăng ký
   
-  ![image](https://github.com/hdnguyen02/quizlet/assets/83913057/71cec11c-82fc-4de2-9428-3ad9487212ba)
+  ![image](https://github.com/hdnguyen02/quizlet/assets/83913057/71cec11c-82fc-4de2-9428-3ad9487212ba){width=50%}
   
   ![image](https://github.com/hdnguyen02/quizlet/assets/83913057/307eb82e-5bd2-44f6-800f-ebc900622cb2)
 
