@@ -96,16 +96,14 @@ import { useUserStore } from '../stores/useUserStore.js'
               email:this.email, password: this.password
             })
               .then(apiResponse => {
-                
                 const response = apiResponse.data
-                if (response.status == 'failure') throw response.message
-                this.userStore.changeAuthenticate()
+                this.userStore.changeAuthenticate() 
                 const token = response.data.token 
                 localStorage.setItem("token", token)
                 this.$router.push("/") //  về lại trang home. 
               })
-              .catch(errorLogin => {
-                this.errorLogin = errorLogin
+              .catch(error => {
+                console.log(error)
               })
 
           },

@@ -166,7 +166,7 @@ export default {
       formData.append('idDeskAddCard', this.$route.params.id)
       formData.append('idTags', this.card.idTags)
 
-      axios.put('http://localhost:8080/api/v1/card/add', formData, {
+      axios.post('http://localhost:8080/api/v1/card/add', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -206,7 +206,7 @@ export default {
 
     handlerAddTag(){ 
       const tagName = this.$refs.tagName.value 
-      this.$axios.put('api/v1/tag/add', {
+      this.$axios.post('api/v1/tag/add', {
         name: tagName
       })
       .then(apiResponse => {
@@ -224,8 +224,6 @@ export default {
       
       
     }
-
-
   },
 
   components: {

@@ -2,6 +2,8 @@
     <div class="mt-14">
         <div class="flex justify-between items-center">
             <h3 class="font-bold text-2xl">Tạo bộ thẻ mới</h3>
+
+       
             <button type="submit"
                 class="flex gap-x-1 focus:outline-none text-white bg-[#4255FF] hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-3">
                 <span>
@@ -9,6 +11,7 @@
                 </span>
                 <span>Nhập</span>
             </button>
+
 
         </div>
 
@@ -111,17 +114,8 @@ export default {
     methods: {
         addDeskHandler() {
             this.$axios.post("api/v1/desk/add", this.desk)
-                .then(apiResponse => {
-                const response = apiResponse.data;
-                // check trạng thái 
-                if (response.status == 'failure')
-                    throw Error(response.message);
-                // thêm thành công => đưa tới màn hình danh sách thẻ card. 
-                this.$router.push("/desk"); // đường dẫn chứa toàn bộ danh sách desk. 
-            })
-                .catch(error => {
-                alert("Thêm thất bại: " + error);
-            });
+                .then( () => this.$router.push("/desk/all"))
+                .catch(error => alert("Thêm thất bại: " + error))
         },
     },
     components: { Success }
