@@ -22,42 +22,54 @@
 - **Vue js, Vue router, Pinia**
 - Vite, Axios, Html, Css, Javascript, Taiwind Css
 ## GIAO DIỆN <a name="4"></a>
-- Trang chủ
-  
-  ![image](https://github.com/hdnguyen02/quizlet/assets/83913057/e453e646-7e03-44ad-ae68-57f7692a1f66)
+_Trang chủ_
+--
 
+![image](https://github.com/hdnguyen02/quizlet-frontend/assets/83913057/82c150d3-e4a3-4452-9bbc-c13f9621f105)
+--
 
-- Đăng nhập && đăng ký
-  
-  ![image](https://github.com/hdnguyen02/quizlet/assets/83913057/71cec11c-82fc-4de2-9428-3ad9487212ba){width=50%}
-  
-  ![image](https://github.com/hdnguyen02/quizlet/assets/83913057/307eb82e-5bd2-44f6-800f-ebc900622cb2)
+_Đăng nhập, Đăng ký_
+--
 
+![image](https://github.com/hdnguyen02/quizlet/assets/83913057/71cec11c-82fc-4de2-9428-3ad9487212ba)
+--
+![image](https://github.com/hdnguyen02/quizlet/assets/83913057/307eb82e-5bd2-44f6-800f-ebc900622cb2)
+--
 
-- Thêm bộ thẻ
-  
-  ![image](https://github.com/hdnguyen02/quizlet/assets/83913057/fd4bd1d9-ddfa-4c37-9237-0e8f0d0e09e0)
+_Thêm bộ thẻ (desk)_
+--
 
+![image](https://github.com/hdnguyen02/quizlet-frontend/assets/83913057/e66db245-0996-4bb9-b378-e6488dc191db)
+--
 
-- Toàn bộ thẻ
+_Danh sách bộ thẻ (desk)_
+--
 
-  ![image](https://github.com/hdnguyen02/quizlet/assets/83913057/2d32ada2-701b-4032-b590-c705a435f294)
-  
+![image](https://github.com/hdnguyen02/quizlet-frontend/assets/83913057/5ac858c4-a3b7-4227-a978-cc747053842f)
+--
 
-- Hoạt động tự học với bộ thẻ  
+_Hoạt động tự học với bộ thẻ_  
+--
 
- ![image](https://github.com/hdnguyen02/quizlet/assets/83913057/26977029-195b-4314-b819-51623a56da18)
+![image](https://github.com/hdnguyen02/quizlet-frontend/assets/83913057/9a12f53e-8823-449a-880c-37edf205d7bf)
+--
  
+_Học thẻ_
+--
 
-- Thêm thẻ (flashcard) vào bộ thẻ
+![image](https://github.com/hdnguyen02/quizlet-frontend/assets/83913057/adb4c66b-cfa3-4e39-8a4d-d4dc5c7ba730)
+--
 
- ![image](https://github.com/hdnguyen02/quizlet/assets/83913057/e1b0e261-546a-4fdd-8e4d-47a71568ed0a)
+_Lật thẻ_
+--
 
+![image](https://github.com/hdnguyen02/quizlet-frontend/assets/83913057/a0be972a-2ea6-4afb-9575-89f4ee7e30bf)
+--
 
+_Thêm flashcard vào bộ thẻ (desk)_
+--
 
+![image](https://github.com/hdnguyen02/quizlet-frontend/assets/83913057/7d829918-f44d-40d8-ac83-87119fd58bbb)
+--
 
-
-
-
-  
-
+... 
