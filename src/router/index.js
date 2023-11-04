@@ -6,6 +6,7 @@ import Desk from "../views/Desk.vue"
 import Class from "../views/Class.vue"
 import NotFound from "../views/NotFound.vue"
 
+
 const routes = [
   {
     path: "/",
@@ -22,6 +23,11 @@ const routes = [
     name: "Class",
     component: Class,
   },
+  {
+    path: "/desk/edit/:id",
+    name: "EditDesk", 
+    component: () => import('../views/EditDesk.vue')
+  }, 
   {
     path: "/desk",
     name: "Desk",

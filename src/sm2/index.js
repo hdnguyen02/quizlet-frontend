@@ -1,20 +1,21 @@
 
 
+
 export default function calc(quality, repetitions, previousInterval, previousEaseFactor) {
     
     let easeFactor; 
     let interval; 
 
-    if (quality >= 3) {
-        if (repetitions == 0) {
-            interval = 1
-        }
-        else if(repetitions == 1) {
-            interval = 4
-        }
-        else{
-            interval = Math.floor(previousEaseFactor * previousInterval)
-        }
+    if (repetitions == 0) {
+        interval = 1
+        repetitions++ 
+    }
+    else if (repetitions == 1) {
+        interval = 4
+        repetitions++
+    }
+    else if (quality >= 3) {
+        interval = Math.floor(previousEaseFactor * previousInterval)
         repetitions++ 
         easeFactor = Math.min(previousEaseFactor + (0.1 - (5 - quality) * (0.08 + (5 - quality) * 0.02)), 2.5) 
         easeFactor = easeFactor.toFixed(3)
