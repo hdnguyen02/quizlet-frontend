@@ -50,11 +50,11 @@
       </div>
     </div>
     <div v-show="isStart" class="flex justify-between items-center mt-2">
-      <span class="text-green-500 text-sm">{{ studyCards.length - indexStudyCard - 1}}</span>
+      <span class="text-green-500 text-sm">{{ studyCards.length - indexStudyCard}}</span>
       <p @click="handlerFlip" class="text-blue-600 underline cursor-pointer">
         Lật thẻ
       </p>
-      <span class="text-orange-500 text-sm">{{ reviewCards.length - indexReviewCard - 1 }}</span>
+      <span class="text-orange-500 text-sm">{{ reviewCards.length - indexReviewCard }}</span>
 
     </div>
 
@@ -155,16 +155,18 @@ export default {
           this.reviewCards = response.data.reviewCards
   
 
-          if (this.isStudyCard) {
+          if (this.studyCards.length != 0) {
             this.curentCard = this.studyCards[this.indexStudyCard]
+            this.isStudyCard = true
           }
-          console.log(response)
-
+          else {
+            this.curentCard = this.reviewCards[this.indexReviewCard]
+            this.isStudyCard = false // review
+          }
         })
 
         .catch(error => {
           console.log(error)
-          // this.$router.push("/not-found")
         })
     },
     playAudio() {
@@ -177,13 +179,9 @@ export default {
       this.isX = true
       this.handlerComputedDay()
 
-      // thực hiện tính toán ngày tại đây. 
-
 
     },
     handlerChooseQuality(event) {
-      // đã lựa chọn rồi => tính toán thôi 
-
       if (this.isComplete) return;
       const target = event.currentTarget
       let card = this.curentCard
@@ -194,24 +192,42 @@ export default {
       card.interval = sm2Value.interval
       card.easeFactor = sm2Value.easeFactor 
       console.log(this.indexStudyCard, this.indexReviewCard)
-      if (this.indexStudyCard != this.studyCards.length - 1) { // chưa học xong. 
+
+      if (this.isStudyCard) {
+        if (this.indexStudyCard != this.studyCards.length - 1) { // chưa học xong. 
         this.learnedCards.push(card) 
         this.curentCard = this.studyCards[++this.indexStudyCard]
+        }
+        else  { 
+          this.learnedCards.push(card)
+          this.curentCard = this.reviewCards[0] 
+          this.isStudyCard = false
+        }
       }
-      else if (this.indexReviewCard != this.reviewCards.length - 1) { // đang xem card review
-        
+      else {
+        if (this.indexReviewCard != this.reviewCards.length - 1) { // đang xem card review
         this.reviewedCards.push(card)
         this.curentCard = this.reviewCards[++this.indexReviewCard]
+        }
+        else  {
+          this.reviewedCards.push(this.curentCard) // vẫn push vào => 
+          console.log("k")
+          this.isComplete = true
+          this.isX = false
+          this.isFlip = false
+          this.isShowAnswer = false
+        }
       }
+     
+      
+      
 
-      if (this.indexStudyCard == this.studyCards.length - 1 && this.indexReviewCard == this.reviewCards.length - 1) {
-        console.log("dô complete")
-        this.isComplete = true
-        return
-      }
-      this.isX = false
-      this.isFlip = false
-      this.isShowAnswer = false
+      // if (this.indexStudyCard == this.studyCards.length - 1 && this.indexReviewCard == this.reviewCards.length - 1) {
+      //   console.log("dô complete")
+      //   this.isComplete = true
+      //   return
+      // }
+      
     },
     handlerComputedDay() {
       let card = this.curentCard
@@ -234,8 +250,19 @@ export default {
       if (newisComplete == true) {
         let dataSend = {
           'reviewCards': this.reviewedCards, 
-          'studyCards': this.studyCards
+          'studyCards': this.learnedCards
         }
+
+        // gửi lên.. 
+      this.$axios.put("api/v1/card/study/" + this.deskId, dataSend)
+      .then(() => {
+        // update thành công => reset lại trang hiện tại 
+        location.reload()
+      }) 
+      .catch(error => {
+        console.log(error)
+      })
+
 
         console.log(dataSend, "data send")
 

@@ -77,7 +77,11 @@ export default {
             this.$axios.get('/api/v1/desk/all')
                 .then(apiResponse => {
                     const response = apiResponse.data
+                    console.log(response)
                     this.desks = response.data
+                })
+                .catch(error => {
+                    console.log(error)
                 })
         }, 
         handleClickDeleteDesk(event) { 
