@@ -30,9 +30,9 @@
 </script>
 
 <style>
-  li .router-link-active {
+  .router-link-active {
     color: green;
-    padding-bottom: 8px;
-    border-bottom: 3px solid green;
+    border-bottom: 3px solid green !important;
+    border-radius: 0% !important;
   }
 </style>

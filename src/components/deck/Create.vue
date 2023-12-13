@@ -1,10 +1,21 @@
 <template>
-     <div v-if="desk" class="mt-14">
+    <div class="mt-14">
         <div class="flex justify-between items-center">
-            <h3 class="font-bold text-2xl">Hiệu chỉnh bộ thẻ</h3>
+            <h3 class="font-bold text-2xl">Tạo bộ thẻ mới</h3>
+
+       
+            <button type="submit"
+                class="flex gap-x-1 focus:outline-none text-white bg-[#4255FF] hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-3">
+                <span>
+                    <i class="fa-solid fa-plus"></i>
+                </span>
+                <span>Nhập</span>
+            </button>
+
+
         </div>
 
-        <form @submit.prevent="editDeskHandler" class="mt-5 flex flex-col-reverse md:flex-row justify-between gap-x-5">
+        <form @submit.prevent="addDeskHandler" class="mt-5 flex flex-col-reverse md:flex-row justify-between gap-x-5">
             <div class="mt-14 flex flex-col gap-y-6 w-full">
                 <div class="flex flex-col">
                     <input v-model="desk.name" type="text" required
@@ -20,8 +31,8 @@
                 </div>
                 <div class="mt-5 flex justify-between">
                     <div class="flex justify-between  w-full">
-                       <button type="submit"
-                            class="focus:outline-none text-white bg-[#4255FF] hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-3">Edit</button>
+                        <!-- tạo --> <button type="submit"
+                            class="focus:outline-none text-white bg-[#4255FF] hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-3">Tạo</button>
 
 
 
@@ -39,16 +50,16 @@
             </div>
             <div class="w-260 md:w-[460px]">
                 <div class="shadow-2xl relative w-full max-h-full">
-            
+                    <!-- Modal content -->
                     <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
                         
-               
+                        <!-- Modal header -->
                         <div class="px-6 py-4 border-b rounded-t dark:border-gray-600">
                             <h3 class="text-base font-semibold text-gray-900 lg:text-xl dark:text-white">
                                 Danh sách label
                             </h3>
                         </div>
-                  
+                        <!-- Modal body -->
                         <div class="p-6">
                             <p class="text-sm font-normal text-gray-500 dark:text-gray-400">Thiết lập label giúp bạn quản lý thẻ tốt
                                 hơn</p>
@@ -59,7 +70,7 @@
                                         <li v-for="label in topic.labels" :key="label.id" class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
                                             <i class="fa-solid fa-tag"></i>
                                             <span class="flex-1 ml-3 whitespace-nowrap">{{label.name}}</span>
-                                            <input :value="label.id" v-model="idLabels"  type="checkbox"> 
+                                            <input :value="label.id" v-model="desk.idLabels"  type="checkbox"> 
                                         </li>
                                 
                                     </ul>
@@ -76,60 +87,37 @@
         </form>
 
         <Success v-show="isShowAlert" message="thêm thành công"></Success>
-    </div> 
+    </div>
 </template>
 
 <script>
 
 import { mapStores } from 'pinia'
-import { useTopicStore } from '../stores/useTopicStore.js'
-import Success from '../components/alert/Success.vue'
+import { useTopicStore } from '../../stores/useTopicStore.js'
+import Success from '../alert/Success.vue'
 
 export default {
     data() {
         return {
-            desk: null,
-            isShowAlert: false, 
-            deskId: this.$route.params.id, 
-            idLabels: []
+            desk: {
+                name: null,
+                description: null,
+                isPublic: true,
+                idLabels: [] // chứa danh sách nhãn. 
+            },
+            isShowAlert: false
         };
     },
     computed: {
         ...mapStores(useTopicStore)
     },
     methods: {
-        editDeskHandler() {
-            this.$axios.put('api/v1/desk/edit/' + this.deskId, {
-                name: this.desk.name, 
-                description: this.desk.description, 
-                isPublic: this.desk.isPublic, 
-                idLabels: this.idLabels
-            })
-                .then(() => {
-                    location.reload()
-                })  
-                .catch(error=>{
-                    console.log(error)
-                })
-        }, 
-        getDeskWithId(deskId) {
-            this.$axios.get(`api/v1/desk/detail/${this.deskId}`)
-            .then(responseApi => {
-                const response = responseApi.data
-                this.desk = response.data
-                this.desk.labels.forEach(label => {
-                  this.idLabels.push(label.id)  
-                })
-            })
-            .catch(error => {
-                console.log(error)
-            }) 
-        }
-        
+        addDeskHandler() {
+            this.$axios.post("api/v1/decks", this.desk)
+                .then( () => this.$router.push("/decks"))
+                .catch(error => alert("Thêm thất bại: " + error))
+        },
     },
-    created() {
-        this.getDeskWithId(this.deskId)
-    }, 
     components: { Success }
 }
 </script>

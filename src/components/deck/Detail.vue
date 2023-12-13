@@ -1,24 +1,23 @@
 <template>
-    <div v-if="desk" class="mt-8 w-full">
-        <h3 class="text-3xl font-bold tracking-tight text-gray-900">{{desk.name}}</h3>
+    <div v-if="deck" class="mt-8 w-full">
+        <h3 class="text-3xl font-bold text-gray-700 text-center">{{deck.name}}</h3>
     
-            <div class="">
-                <h3 class="font-medium mt-1">Hoạt động tự học</h3>
-                <div class="max-w-3xl w-full mt-4 flex gap-y-4 lg:gap-y-0 flex-col lg:flex-row lg:justify-between">
-                    <router-link :to="`/desk/${idDesk}/study`" class="flex gap-x-4 items-center bg-white px-10 py-2 rounded-lg shadow-md">
+            <div>
+                <div class="mt-4 flex gap-x-4 justify-center">
+                    <router-link :to="`/decks/${idDeck}/study`" class="flex gap-x-4 items-center bg-white px-10 py-1 shadow-md">
                         <span><i class="fa-solid fa-chalkboard text-2xl text-[#4255FF]"></i></span>
                         <span class="font-medium">Học</span>
                     </router-link>
-                    <router-link :to="`/desk/${idDesk}/add-card`"
-                        class="flex gap-x-4 items-center bg-white px-10 py-2 rounded-lg shadow-md">
+                    <router-link :to="`/decks/${idDeck}/cards/create`"
+                        class="flex gap-x-4 items-center bg-white px-10 py-1 shadow-md">
                         <span><i class="fa-solid fa-plus text-2xl text-[#4255FF]"></i></span>
                         <span class="font-medium">Thêm thẻ</span>
                     </router-link>
-                    <button class="flex gap-x-4 items-center bg-white px-10 py-2 rounded-lg shadow-md">
+                    <router-link :to="`/decks/${idDeck}/cards`" class="flex gap-x-4 items-center bg-white px-10 py-1 shadow-md">
                         <span><i class="fa-solid fa-check text-2xl text-[#4255FF]"></i></span>
-                        <span class="font-medium">Kiểm tra</span>
-                    </button>
-                    <button class="flex gap-x-4 items-center bg-white px-10 py-2 rounded-lg shadow-md">
+                        <span class="font-medium">Cards</span>
+                    </router-link>
+                    <button class="flex gap-x-4 items-center bg-white px-10 py-1 shadow-md">
                         <span><i class="fa-solid fa-pen-to-square text-2xl text-[#4255FF]"></i></span>
                         <span class="font-medium">Hiệu chỉnh</span>
                     </button>
@@ -40,19 +39,19 @@ export default {
     },
     data() {
         return {
-            idDesk: this.$route.params.id, 
-            desk: null
+            idDeck: this.$route.params.idDeck, 
+            deck: null
         }
     },
     created(){
-       this.getDesk()
+       this.getDeck()
     }, 
     methods: {
-        getDesk(){
-            this.$axios.get(`api/v1/desk/detail/${this.idDesk}`)
+        getDeck(){
+            this.$axios.get(`api/v1/decks/${this.idDeck}`)
             .then(apiResponse => {
                 const response = apiResponse.data 
-                this.desk = response.data
+                this.deck = response.data
             })
             .catch(error => {
                 console.log(error)
@@ -61,12 +60,12 @@ export default {
         }
     },
     beforeRouteUpdate(to, from, next) {
-        this.idDesk = to.params.id 
+        this.iddeck = to.params.id 
          next();
     }, 
     watch: {
-        idDesk() {
-            this.getDesk()
+        iddeck() {
+            this.getDeck()
         }
     }
 

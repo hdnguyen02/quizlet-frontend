@@ -53,7 +53,7 @@
                         </router-link>
                     </li>
                     <li v-if="userStore.getIsAuthenticated" class="mb-4 lg:mb-0 lg:pr-2 me-4">
-                        <router-link to="/desk/all">
+                        <router-link to="/decks">
                             Bộ thẻ
                         </router-link>
                     </li>
@@ -105,7 +105,7 @@
                                 <i class="fa-solid fa-plus"></i>
                             </div>
                             <div :class="{ hidden: isCloseAdd }" class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                                <router-link @click="isCloseAdd = true" to="/desk/add" class="block px-4 py-2 text-sm text-gray-700" tabindex="-1">Bộ thẻ</router-link>
+                                <router-link @click="isCloseAdd = true" to="/decks/create" class="block px-4 py-2 text-sm text-gray-700" tabindex="-1">Bộ thẻ</router-link>
                                 <router-link @click="isCloseAdd = true" to="/class" class="block px-4 py-2 text-sm text-gray-700" tabindex="-1">Lớp</router-link>
                         
                             </div>

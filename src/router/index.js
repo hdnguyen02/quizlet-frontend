@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/Home.vue";
 import Login from "../views/Login.vue"
 import Blog from "../views/Blog.vue";
-import Desk from "../views/Desk.vue"
+import Desk from "../views/Deck.vue"
 import Class from "../views/Class.vue"
 import NotFound from "../views/NotFound.vue"
 
@@ -14,49 +14,55 @@ const routes = [
     component: Home,
   },
   {
-    path: "/blog",
+    path: "/blogs",
     name: "Blog",
     component: Blog,
   },
   {
-    path: "/class",
+    path: "/classes",
     name: "Class",
     component: Class,
   },
   {
-    path: "/desk/edit/:id",
-    name: "EditDesk", 
-    component: () => import('../views/EditDesk.vue')
-  }, 
-  {
-    path: "/desk",
+    path: "/decks",
     name: "Desk",
     component: Desk,
     children: [
       {
-        path: "all",
-        name: "AllDesk",
-        component: () => import('../components/AllDesk.vue')
+        path: "",
+        name: "Decks",
+        component: () => import('../components/deck/Decks.vue')
       },
       {
-        path: "add",
-        name: "AddDesk",
-        component: () => import('../components/AddDesk.vue')
+        path: "create",
+        name: "DeckCreate",
+        component: () => import('../components/deck/Create.vue')
       },
+
       {
-        path: ":id",
-        name: "DetailDesk",
-        component: () => import("../components/DetailDesk.vue"),
+        path: ":idDeck",
+        name: "DeckDetail",
+        component: () => import("../components/deck/Detail.vue"),
         children: [
           {
-            path: "add-card",
-            name: "AddCard",
-            component: () => import("../components/AddCard.vue"),
+            path: "cards", 
+            name:"Cards", 
+            component: () => import("../components/card/Cards.vue")
+          }, 
+          {
+            path: "update", 
+            name: "DeckUpdate", 
+            component: () => import("../components/deck/Update.vue")
+          },
+          {
+            path: "cards/create",
+            name: "CardCreate",
+            component: () => import("../components/card/Create.vue"),
           },
           {
             path: "study",
             name: "Study",
-            component: () => import("../components/Study.vue"),
+            component: () => import("../components/deck/study/Controll.vue"),
           },
         ],
       },

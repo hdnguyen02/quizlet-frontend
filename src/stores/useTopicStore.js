@@ -14,7 +14,7 @@ export const useTopicStore = defineStore('topic', {
   }, 
   actions: {
     fetchTopics(){
-        const urlapi = baseURL + "/api/v1/topic/all"
+        const urlapi = baseURL + "/api/v1/topics"
         axios.get(urlapi).then(apiResponse => {
             const response = apiResponse.data 
             this.topics = response.data
