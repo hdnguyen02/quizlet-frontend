@@ -13,10 +13,7 @@
                         <span><i class="fa-solid fa-plus text-2xl text-[#4255FF]"></i></span>
                         <span class="font-medium">Thêm thẻ</span>
                     </router-link>
-                    <router-link :to="`/decks/${idDeck}/cards`" class="flex gap-x-4 items-center bg-white px-10 py-1 shadow-md">
-                        <span><i class="fa-solid fa-check text-2xl text-[#4255FF]"></i></span>
-                        <span class="font-medium">Cards</span>
-                    </router-link>
+        
                     <button class="flex gap-x-4 items-center bg-white px-10 py-1 shadow-md">
                         <span><i class="fa-solid fa-pen-to-square text-2xl text-[#4255FF]"></i></span>
                         <span class="font-medium">Hiệu chỉnh</span>

@@ -86,9 +86,6 @@ export default {
       this.isFlip = true
     }, 
     handleChoose(key) {
-
-      
-
       this.$emit("nextCard",response[key])
     }
   },

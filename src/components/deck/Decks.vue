@@ -87,6 +87,7 @@ export default {
             })
             .catch((error) => {
                 console.log(error)
+               // gán cho nó cái mảng rỗng. 
             })
         }, 
         handleCancelDelete() {

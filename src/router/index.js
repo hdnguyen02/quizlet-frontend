@@ -3,6 +3,7 @@ import Home from "../views/Home.vue";
 import Login from "../views/Login.vue"
 import Blog from "../views/Blog.vue";
 import Desk from "../views/Deck.vue"
+import Cards  from "../views/Cards.vue"
 import Class from "../views/Class.vue"
 import NotFound from "../views/NotFound.vue"
 
@@ -24,6 +25,12 @@ const routes = [
     component: Class,
   },
   {
+      path: "/cards", 
+      name:"Cards", 
+      component: Cards
+
+  },
+  {
     path: "/decks",
     name: "Desk",
     component: Desk,
@@ -38,17 +45,14 @@ const routes = [
         name: "DeckCreate",
         component: () => import('../components/deck/Create.vue')
       },
+      
 
       {
         path: ":idDeck",
         name: "DeckDetail",
         component: () => import("../components/deck/Detail.vue"),
         children: [
-          {
-            path: "cards", 
-            name:"Cards", 
-            component: () => import("../components/card/Cards.vue")
-          }, 
+          
           {
             path: "update", 
             name: "DeckUpdate", 
