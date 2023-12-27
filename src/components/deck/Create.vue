@@ -1,31 +1,20 @@
 <template>
-    <div class="mt-14">
+    <div class="mx-24">
         <div class="flex justify-between items-center">
             <h3 class="font-bold text-2xl">Tạo bộ thẻ mới</h3>
-
-       
-            <button type="submit"
-                class="flex gap-x-1 focus:outline-none text-white bg-[#4255FF] hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-3">
-                <span>
-                    <i class="fa-solid fa-plus"></i>
-                </span>
-                <span>Nhập</span>
-            </button>
-
-
         </div>
 
         <form @submit.prevent="addDeskHandler" class="mt-5 flex flex-col-reverse md:flex-row justify-between gap-x-5">
             <div class="mt-14 flex flex-col gap-y-6 w-full">
                 <div class="flex flex-col">
                     <input v-model="desk.name" type="text" required
-                        class="outline-none focus:border-yellow-400 border-gray-500 border-b-[3px] pb-3 bg-[#F6F7FB]"
+                        class="outline-none focus:border-yellow-400 border-gray-500 border-b-[3px] pb-3"
                         placeholder="Nhập tên desk..." />
                     <label class="mt-3 uppercase text-[12px] font-bold text-gray-500">Tên desk</label>
                 </div>
                 <div class="flex flex-col">
                     <input v-model="desk.description" type="text"
-                        class="outline-none focus:border-yellow-400 border-gray-500 border-b-[3px] pb-3 bg-[#F6F7FB]"
+                        class="outline-none focus:border-yellow-400 border-gray-500 border-b-[3px] pb-3"
                         placeholder="Mô tả desk..." />
                     <label class="mt-3 uppercase text-[12px] font-bold text-gray-500">Mô tả</label>
                 </div>
@@ -33,8 +22,6 @@
                     <div class="flex justify-between  w-full">
                         <!-- tạo --> <button type="submit"
                             class="focus:outline-none text-white bg-[#4255FF] hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-3">Tạo</button>
-
-
 
                         <label class="relative inline-flex items-center cursor-pointer">
                             <input v-model="desk.isPublic" type="checkbox" class="sr-only peer">

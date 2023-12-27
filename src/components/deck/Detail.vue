@@ -2,27 +2,26 @@
     <div v-if="deck" class="mt-8 w-full">
         <h3 class="text-3xl font-bold text-gray-700 text-center">{{deck.name}}</h3>
     
-            <div>
-                <div class="mt-4 flex gap-x-4 justify-center">
-                    <router-link :to="`/decks/${idDeck}/study`" class="flex gap-x-4 items-center bg-white px-10 py-1 shadow-md">
-                        <span><i class="fa-solid fa-chalkboard text-2xl text-[#4255FF]"></i></span>
+            <!-- <div> -->
+                <div class="px-2 py-8 flex gap-x-2 md:gap-x-4 justify-center">
+                    <router-link :to="`/decks/${idDeck}/study`" class="flex gap-x-4 items-center bg-white px-2 md:px-10 md:py-1 md:shadow-md">
+                        <span class="hidden md:block"><i class="fa-solid fa-chalkboard text-2xl text-[#4255FF]"></i></span>
                         <span class="font-medium">Học</span>
                     </router-link>
                     <router-link :to="`/decks/${idDeck}/cards/create`"
-                        class="flex gap-x-4 items-center bg-white px-10 py-1 shadow-md">
-                        <span><i class="fa-solid fa-plus text-2xl text-[#4255FF]"></i></span>
+                    class="flex gap-x-4 items-center bg-white px-2 md:px-10 md:py-1 md:shadow-md">
+                        <span class="hidden md:block"><i class="fa-solid fa-plus text-2xl text-[#4255FF]"></i></span>
                         <span class="font-medium">Thêm thẻ</span>
                     </router-link>
         
-                    <button class="flex gap-x-4 items-center bg-white px-10 py-1 shadow-md">
-                        <span><i class="fa-solid fa-pen-to-square text-2xl text-[#4255FF]"></i></span>
+                    <router-link :to="`/decks/${idDeck}/update`" class="flex gap-x-4 items-center bg-white px-2 md:px-10 md:py-1 md:shadow-md">
+                        <span class="hidden md:block"><i class="fa-solid fa-pen-to-square text-2xl text-[#4255FF]"></i></span>
                         <span class="font-medium">Hiệu chỉnh</span>
-                    </button>
+                    </router-link>
 
                 </div>
                 <RouterView></RouterView>
-
-            </div>
+            <!-- </div> -->
     
 
     </div>

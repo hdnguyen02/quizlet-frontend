@@ -1,23 +1,39 @@
 <template>
-     <div v-if="desk" class="mt-14">
-        <div class="flex justify-between items-center">
-            <h3 class="font-bold text-2xl">Hiệu chỉnh bộ thẻ</h3>
-        </div>
-
-        <form @submit.prevent="editDeskHandler" class="mt-5 flex flex-col-reverse md:flex-row justify-between gap-x-5">
-            <div class="mt-14 flex flex-col gap-y-6 w-full">
+     <div v-if="desk" class="mx-8">
+        <form @submit.prevent="editDeskHandler" class="mx-auto flex flex-col md:flex-row justify-between gap-x-5 lg:max-w-xl md:max-w-md">
+            <div class="flex flex-col gap-y-6 w-full">
                 <div class="flex flex-col">
                     <input v-model="desk.name" type="text" required
-                        class="outline-none focus:border-yellow-400 border-gray-500 border-b-[3px] pb-3 bg-[#F6F7FB]"
+                        class="outline-none focus:border-yellow-400 border-gray-500 border-b-[3px] pb-3"
                         placeholder="Nhập tên desk..." />
                     <label class="mt-3 uppercase text-[12px] font-bold text-gray-500">Tên desk</label>
                 </div>
                 <div class="flex flex-col">
                     <input v-model="desk.description" type="text"
-                        class="outline-none focus:border-yellow-400 border-gray-500 border-b-[3px] pb-3 bg-[#F6F7FB]"
+                        class="outline-none focus:border-yellow-400 border-gray-500 border-b-[3px] pb-3"
                         placeholder="Mô tả desk..." />
                     <label class="mt-3 uppercase text-[12px] font-bold text-gray-500">Mô tả</label>
                 </div>
+                <div>
+
+             
+                <span class="font-bold">Topic</span>
+              
+                                <ul class="my-1">
+                                    <li v-for="topic in topicStore.getTopics" :key="topic.name">
+                                        <span class="font-medium">{{topic.name}}</span>
+                                        <ul class="">
+                                            <li v-for="label in topic.labels" :key="label.id" class="flex items-center py-1 px-2 my-1 text-base">
+                                                <i class="fa-solid fa-tag"></i>
+                                                <span class="flex-1 ml-3">{{label.name}}</span>
+                                                <input class="w-4 h-4" :value="label.id" v-model="idLabels"  type="checkbox"> 
+                                            </li>
+                                    
+                                        </ul>
+                                    </li>   
+                                </ul>
+                            </div>
+    
                 <div class="mt-5 flex justify-between">
                     <div class="flex justify-between  w-full">
                        <button type="submit"
@@ -37,41 +53,7 @@
 
                 </div>
             </div>
-            <div class="w-260 md:w-[460px]">
-                <div class="shadow-2xl relative w-full max-h-full">
-            
-                    <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                        
-               
-                        <div class="px-6 py-4 border-b rounded-t dark:border-gray-600">
-                            <h3 class="text-base font-semibold text-gray-900 lg:text-xl dark:text-white">
-                                Danh sách label
-                            </h3>
-                        </div>
-                  
-                        <div class="p-6">
-                            <p class="text-sm font-normal text-gray-500 dark:text-gray-400">Thiết lập label giúp bạn quản lý thẻ tốt
-                                hơn</p>
-                            <ul class="my-4 space-y-3 overflow-y-scroll h-36">
-                                <li v-for="topic in topicStore.getTopics" :key="topic.name">
-                                    <span>Topic: {{topic.name}}</span>
-                                    <ul class="">
-                                        <li v-for="label in topic.labels" :key="label.id" class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
-                                            <i class="fa-solid fa-tag"></i>
-                                            <span class="flex-1 ml-3 whitespace-nowrap">{{label.name}}</span>
-                                            <input :value="label.id" v-model="idLabels"  type="checkbox"> 
-                                        </li>
-                                
-                                    </ul>
-                                </li>   
-                            </ul>
-                            <div>
-                   
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+           
 
         </form>
 

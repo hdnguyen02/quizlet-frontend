@@ -1,5 +1,5 @@
 <template>
-    <div v-if="this.nCards != 0" class="mt-8 flex justify-center items-center flex-col">
+    <div v-if="this.nCards != 0" class="flex justify-center items-center flex-col">
       <Intro v-if="!isStudy" @startStudy="startStudy"
         :nNew="nTypeCard.fresh" 
         :nReview="nTypeCard.review" 

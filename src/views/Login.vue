@@ -1,10 +1,10 @@
 <template>
     <!-- component -->
-<link rel="stylesheet" href="https://kit-pro.fontawesome.com/releases/v5.15.1/css/pro.min.css" />
+<!-- <link rel="stylesheet" href="https://kit-pro.fontawesome.com/releases/v5.15.1/css/pro.min.css" /> -->
 
-<div class="min-h-screen flex flex-col items-center justify-center">
+<div class="flex flex-col items-center mx-8">
   <div class="flex flex-col bg-gray-50 shadow-lg px-4 sm:px-6 md:px-8 lg:px-10 py-8 rounded-md w-full max-w-md">
-    <div class="font-medium self-center text-xl sm:text-2xl uppercase text-gray-800">Login To Your Account</div>
+    <div class="font-medium self-center text-sm sm:text-xl uppercase text-gray-800">Login To Your Account</div>
     <button class="relative mt-6 border rounded-md py-2 text-sm text-gray-800 bg-gray-100 hover:bg-gray-200">
       <span class="absolute left-0 top-0 flex items-center justify-center h-full w-10 text-blue-500"><i class="fab fa-facebook-f"></i></span>
       <span>continue with facebook</span>
@@ -97,13 +97,14 @@ import { useUserStore } from '../stores/useUserStore.js'
             })
               .then(apiResponse => {
                 const response = apiResponse.data
-                this.userStore.changeAuthenticate() 
                 const token = response.data.token 
                 localStorage.setItem("token", token)
+                this.userStore.setAuthenticated(true)
                 this.$router.push("/") //  về lại trang home. 
               })
               .catch(error => {
                 console.log(error)
+
               })
 
           },

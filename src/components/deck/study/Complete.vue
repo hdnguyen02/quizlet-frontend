@@ -1,5 +1,5 @@
 <template>
-    <div class="flex justify-center flex-col mt-5">
+    <div class="flex justify-center flex-col">
     <p class="text-center">
       Bạn đã hoàn thành học, ôn tập ngày hôm nay 
     </p>

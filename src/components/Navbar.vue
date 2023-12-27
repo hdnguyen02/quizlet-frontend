@@ -1,14 +1,13 @@
 <template>
-    <!-- Main navigation container -->
     <nav
-        class="sticky top-0 z-50 flex-no-wrap flex w-full items-center justify-between bg-[#FBFBFB] py-2 shadow-md shadow-black/5 dark:bg-neutral-600 dark:shadow-black/10 lg:flex-wrap lg:justify-start lg:py-">
+        class="fixed top-0 z-50 flex-no-wrap flex w-full items-center justify-between bg-[#FBFBFB] py-2 shadow-md shadow-black/5 dark:bg-neutral-600 dark:shadow-black/10 lg:flex-wrap lg:justify-start lg:py-">
         <div class="flex w-full flex-wrap items-center justify-between px-3">
             <!-- Hambu  rger button for mobile view -->
             <button
                 class="block border-0 bg-transparent px-2 text-neutral-500 hover:no-underline hover:shadow-none focus:no-underline focus:shadow-none focus:outline-none focus:ring-0 dark:text-neutral-200 lg:hidden"
                 type="button" data-te-collapse-init data-te-target="#navbarSupportedContent1"
                 aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation">
-                <!-- Hamburger icon -->
+
                 <span class="[&>svg]:w-7">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-7 w-7">
                         <path fill-rule="evenodd"
@@ -37,9 +36,9 @@
                     <li class="mb-4 lg:mb-0 lg:pr-2 me-4">
                         <span to="/topics">
                             Chủ đề
-                        </span> 
+                        </span>
                         <span><i class="fa-solid fa-caret-down"></i></span>
-                        
+
                     </li>
                     <!-- Team link -->
                     <li class="mb-4 lg:mb-0 lg:pr-2 me-4">
@@ -67,32 +66,9 @@
 
             <!-- Right elements -->
             <div class="relative flex items-center gap-x-4">
-                
-                <button 
-                        class="text-black inline-block rounded px-6 py-2 font-medium shadow-md transition duration-150 ease-in-out hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg"
-                        style="background-color: #FFCD1F">
-                        Nâng cấp tài khoản
-                    </button>
-
-
-                <form>   
-                    <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only">Search</label>
-                    <div class="relative">
-                        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                            <i class="fa-solid fa-magnifying-glass"></i>
-                        </div>
-                        <input type="search" id="default-search" class="block w-full px-12 py-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 outline-none" placeholder="Search Mockups, Logos..." required>
-            
-                    </div>
-                </form>
-            
-
                 <div v-if="!userStore.getIsAuthenticated" class="relative" data-te-dropdown-ref
                     data-te-dropdown-alignment="end">
-                    <!-- Second dropdown trigger -->
                     <router-link to="/login" class="text-gray-500 font-medium">Đăng nhập</router-link>
-                    <!-- Second dropdown menu -->
-
                 </div>
                 <div v-if="!userStore.getIsAuthenticated">
                     <router-link to="/register"
@@ -105,38 +81,31 @@
                 <div>
 
                     <div v-if="userStore.getIsAuthenticated" class="flex gap-3">
-                        <div class="relative ml-3">
-                            <div @click="toggleAdd" class="rounded-3xl w-8 h-8 bg-[#4255FF] flex items-center justify-center font-bold text-white">
-                                <i class="fa-solid fa-plus"></i>
-                            </div>
-                            <div :class="{ hidden: isCloseAdd }" class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                                <router-link @click="isCloseAdd = true" to="/decks/create" class="block px-4 py-2 text-sm text-gray-700" tabindex="-1">Bộ thẻ</router-link>
-                                <router-link @click="isCloseAdd = true" to="/classes" class="block px-4 py-2 text-sm text-gray-700" tabindex="-1">Lớp</router-link>
-                        
-                            </div>
-
-                        </div>
-                        <div @click="toggleDropdownAvt" class="relative ml-3">
-                            <div class="flex gap-x-2">
-                                <div class="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-                                    id="user-menu-button" aria-expanded="false" aria-haspopup="true">
-                                    <img class="h-8 w-8 rounded-full"
-                                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                                        alt="">
+                        <div class="dropdown">
+                            <div class="dropdown-btn">
+                                <div @click="toggleAdd"
+                                    class="rounded-3xl w-8 h-8 bg-[#4255FF] flex items-center justify-center font-bold text-white">
+                                    <i class="fa-solid fa-plus"></i>
                                 </div>
-                                <div class="flex items-center"><i class="fa-solid fa-caret-down"></i></div>
                             </div>
 
+                            <div class="dropdown-content-right">
+                                <a>Bộ thẻ</a>
+                                <a>Lớp</a>
+                            </div>
+                        </div>
 
-                            <div :class="{ hidden: isCloseDropdownAvt }"
-                                class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                                <!-- Active: "bg-gray-100", Not Active: "" -->
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
-                                    id="user-menu-item-0">Your Profile</a>
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
-                                    id="user-menu-item-1">Settings</a>
-                                <router-link @click="logouthandler" to="/" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
-                                    id="user-menu-item-2">Sign out</router-link>
+
+                        <div class="dropdown">
+                            <div class="dropdown-btn">
+                                <img class="rounded-full h-8 w-8"
+                                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80">
+                                <img class="h-4 w-4" src="../assets/image/dropdown.png">
+                            </div>
+                            <div class="dropdown-content-right">
+                                <a>Your profile</a>
+                                <a>Setting</a>
+                                <a @click="handleLogout">Sign out</a>
                             </div>
                         </div>
                     </div>
@@ -154,27 +123,21 @@ import { useTopicStore } from '../stores/useTopicStore.js'
 
 export default {
     computed: {
-        ...mapStores(useUserStore,useTopicStore),
+        ...mapStores(useUserStore, useTopicStore),
     },
     data() {
         return {
-            isCloseDropdownAvt: true,
-            isCloseAdd: true       
+
         }
     },
     methods: {
-        toggleDropdownAvt() {
-            this.isCloseDropdownAvt = !this.isCloseDropdownAvt
-        },
-        toggleAdd() {
-            this.isCloseAdd = !this.isCloseAdd 
-        },
-        logouthandler() {
+        handleLogout() {
             localStorage.removeItem("token")
-            this.userStore.changeAuthenticate()
+            this.userStore.setAuthenticated(false)
+            this.$router.push('/')
         }
-}, 
-    created(){
+    },
+    created() {
         this.topicStore.fetchTopics()
     }
 

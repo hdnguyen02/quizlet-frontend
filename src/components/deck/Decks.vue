@@ -1,6 +1,5 @@
 <template>
-    <div class="mt-8">
-        
+    <div class="mx-24">
         <div v-if="decks!=null">
             <div>
                 <p class="text-sm ml-1">

@@ -2,7 +2,7 @@ import {defineStore} from 'pinia'
 export const useUserStore = defineStore('user', {
   state: () => {
       return {
-        isAuthenticated: true 
+        isAuthenticated: false // mới vào trạng thái sẽ như này. 
       }
   }, 
   getters: {
@@ -10,9 +10,14 @@ export const useUserStore = defineStore('user', {
       return state.isAuthenticated
     }
   }, 
+  
   actions: {
-    changeAuthenticate(){
-      this.isAuthenticated = !this.isAuthenticated
+    setAuthenticated(value) { 
+      this.isAuthenticated = value
     }
+
+    // changeAuthenticate(){
+    //   this.isAuthenticated = !this.isAuthenticated
+    // }
   }
 })

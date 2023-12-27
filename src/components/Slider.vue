@@ -1,5 +1,5 @@
 <template>
-    <div class="relative" style="margin:0px -100px">
+    <div class="relative mt-20" style="margin-top: -20px">
        <img src="../assets/study.jpg" alt="">
        <div class="absolute top-16 left-20 text-xl lg:top-48 lg:left-52 lg:text-5xl font-bold text-white">
             <h2>Thẻ ghi nhớ kỹ thuật số và</h2>
