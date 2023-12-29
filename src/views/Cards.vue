@@ -97,7 +97,7 @@
         <div class="mt-4 md:mt-0 md:ml-60 px-8 md:px-16">
             <table class="">
                 <tbody class="divide-y divide-gray-100">
-                    <tr v-for="card in cards" :key="card.id">
+                    <tr v-for="(card,index) in cards">
                         <td class="py-4 px-2 text-sm text-gray-800">
                             <input type="checkbox"
                                 class="w-6 h-6 mt-2 rounded text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-6 dark:bg-gray-700 dark:border-gray-600">
@@ -109,9 +109,8 @@
                                 class="block text-center p-1 rounded bg-gray-700 text-xs">{{ card.type }}</span>
                         </td>
                         <td class="py-4 px-2">
-                           <span class="text-gray-500 underline cursor-pointer">edit</span>
+                           <span @click="handleShowDetail(index)" class="text-gray-500 underline cursor-pointer">edit</span>
                         </td>
-              
                     </tr>
                 </tbody>
             </table>
@@ -157,25 +156,32 @@
           </form>
 
         </div> -->
+    
+        <div v-if="isShowDetail">
+            <Detail :card="card" @close="handleColose"></Detail>
+        </div>
+
+        
     </div>
 </template>
 <script>
 
-
-
+import Detail from '../components/card/Detail.vue'
 export default {
+    components: { Detail },
     data() {
         return {
             cards: null,
             decks: null,
             tags: null,
-            valueFilter: null
-        }
+            valueFilter: null,  
+            card: null, 
+            isShowDetail: false
+        };
     },
     methods: {
         async getCards(filter, value) {
-
-            let api
+            let api;
             if (filter != null && value != null) {
                 api = `api/v1/cards?filter=${filter}&value=${value}`
             }
@@ -185,9 +191,7 @@ export default {
             const apiResponse = await this.$axios.get(api)
             const response = apiResponse.data
             this.cards = response.data
-
         },
-
         // lấy thẻ deck card của người dùng. ''
         async getDecks() {
             const apiResponse = await this.$axios.get(`api/v1/decks`)
@@ -199,6 +203,13 @@ export default {
             const response = apiResponse.data
             this.tags = response.data
         },
+        handleColose(){ 
+            this.isShowDetail = false
+        }, 
+        handleShowDetail(index){
+            this.card = this.cards[index]
+            this.isShowDetail = true    
+        }
     },
     created() {
         this.getCards(null, null)
@@ -207,11 +218,11 @@ export default {
     },
     watch: {
         valueFilter(value) {
-            let filter = document.querySelector('input[type="radio"][name="value-filter"]:checked').dataset.typeFilter
+            let filter = document.querySelector('input[type="radio"][name="value-filter"]:checked').dataset.typeFilter;
             this.getCards(filter, value)
         }
     },
-   
+    
 }
 
 </script>

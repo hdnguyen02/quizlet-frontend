@@ -27,9 +27,15 @@ const routes = [
   {
       path: "/cards", 
       name:"Cards", 
-      component: Cards
+      component: Cards, 
+     
 
   },
+  // {
+  //   path: "/cards/:id", 
+  //   name: "CardDetail",
+  //   component:() => import('../components/card/Detail.vue')      
+  // },
   {
     path: "/decks",
     name: "Desk",
