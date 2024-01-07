@@ -205,7 +205,6 @@ export default {
         .then((apiResponse) => {
           this.tagName = null;
           const response = apiResponse.data;
-          console.log(response);
           this.message = response.message;
           this.isSuccess = true;
           setTimeout(() => {
